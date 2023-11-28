@@ -1,0 +1,1 @@
+The repo houses all files for the ALX backend specilization javascript projects.
