@@ -1,4 +1,7 @@
-const { uploadPhoto, createUser } = require('./utils');
+const otherModule = require('./utils');
+
+const { uploadPhoto } = otherModule;
+const { createUser } = otherModule;
 
 async function asyncUploadUser() {
   try {
