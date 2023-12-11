@@ -1,0 +1,1 @@
+This directory contains files for the **ES6 Promises** project tasks
