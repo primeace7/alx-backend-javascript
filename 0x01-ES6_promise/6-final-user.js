@@ -1,0 +1,8 @@
+const signUpUser = require('./4-user-promise');
+const uploadPhoto = require('./5-photo-reject');
+
+function handleProfileSignup(firstName, lastName, fileName) {
+  return Promise.allSettled([signUpUser(firstName, lastName), uploadPhoto(fileName)]);
+}
+
+module.exports = handleProfileSignup;
