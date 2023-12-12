@@ -3,7 +3,7 @@ const uploadPhoto = require('./5-photo-reject');
 
 function handleProfileSignup(firstName, lastName, fileName) {
   const result = Promise.allSettled([signUpUser(firstName, lastName), uploadPhoto(fileName)])
-    .then((value) => value);
+    .finally((value) => value);
   return result;
 }
 
