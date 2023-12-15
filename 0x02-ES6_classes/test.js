@@ -1,14 +1,20 @@
-import Car from './10-car.js';
+import HolbertonCourse from "./2-hbtn_course.js";
 
-class TestCar extends Car {}
+const c1 = new HolbertonCourse("ES6", 1, ["Bob", "Jane"])
+console.log(c1.name);
+c1.name = "Python 101";
+console.log(c1);
 
-const tc1 = new TestCar('Nissan', 'Turbo', 'Pink');
-const tc2 = tc1.cloneCar();
+try {
+    c1.name = 12;
+} 
+catch(err) {
+    console.log(err);
+}
 
-console.log(tc1);
-console.log(tc1 instanceof TestCar);
-
-console.log(tc2);
-console.log(tc2 instanceof TestCar);
-
-console.log(tc1 == tc2);
+try {
+    const c2 = new HolbertonCourse("ES6", "1", ["Bob", "Jane"]);
+}
+catch(err) {
+    console.log(err);
+}
