@@ -8,6 +8,10 @@ class EVCar extends Car {
     this._color = color;
     this._range = range;
   }
+
+  cloneCar() {
+    return new super.constructor();
+  }
 }
 
 module.exports = EVCar;

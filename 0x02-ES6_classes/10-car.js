@@ -1,3 +1,4 @@
+const clone = Symbol('car clone');
 class Car {
   constructor(brand, motor, color) {
     this._brand = brand;
@@ -5,8 +6,12 @@ class Car {
     this._color = color;
   }
 
+  [clone]() {
+    return new this.constructor();
+  }
+
   cloneCar() {
-    return new Car();
+    return this[clone]();
   }
 }
 
