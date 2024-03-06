@@ -1,8 +1,7 @@
 module.exports = function appendToEachArrayValue(array, appendString) {
-  const result = [];
-  for (const idx of array.keys()) {
-    result.push(appendString + array[idx]);
+  for (const item of array) {
+      array.splice(array.indexOf(item), 1, appendString + item);
   }
 
-  return result;
+  return array;
 };
