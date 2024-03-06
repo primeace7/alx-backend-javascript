@@ -1,0 +1,1 @@
+This directory contains code files for the **ES6 Basics** project. The project covers the basic additions of ES6.
