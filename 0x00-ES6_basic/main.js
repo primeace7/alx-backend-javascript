@@ -1,3 +1,4 @@
-const appendToEachArrayValue = require('./10-loops.js');
+const taskBlock = require('./1-block-scoped.js');
 
-console.log(appendToEachArrayValue(['appended', 'fixed', 'displayed'], 'correctly-'));
+console.log(taskBlock(true));
+console.log(taskBlock(false));
