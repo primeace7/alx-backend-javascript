@@ -1,3 +1,3 @@
-const handleProfileSignup = require("./3-all");
+const handleProfileSignup = require('./3-all');
 
 handleProfileSignup();

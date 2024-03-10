@@ -12,4 +12,4 @@ function createUser() {
   });
 }
 
-module.exports = {uploadPhoto, createUser};
+module.exports = { uploadPhoto, createUser };
