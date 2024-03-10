@@ -1,3 +1,3 @@
-const uploadPhoto = require('./5-photo-reject');
+const handleProfileSignup = require("./3-all");
 
-console.log(uploadPhoto('guillaume.jpg'));
+handleProfileSignup();
