@@ -5,8 +5,8 @@ module.exports = class Building {
     }
     this._sqft = sqft;
 
-    if (new.target.name !== 'Building') {
-      throw new Error('Class extending Building must override evacuationWarningMessage');
+    if (!(this.evacuationWarningMessage) && this.constructor.name !== 'Building') {
+      throw new Error('Class extending Building  must override evacuationWarningMessage');
     }
   }
 
@@ -19,11 +19,5 @@ module.exports = class Building {
       throw TypeError('Sqft must be a number');
     }
     this._sqft = sqft;
-  }
-
-  evacuationWarningMessage() {
-    if (this.constructor.name !== 'Building') {
-      throw new Error('Class extending Building  must override evacuationWarningMessage');
-    }
   }
 };

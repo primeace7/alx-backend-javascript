@@ -45,6 +45,6 @@ module.exports = class Pricing {
       throw TypeError('ConversionRate must be a number');
     }
 
-    return this._amount * this._conversionRate;
+    return amount * conversionRate;
   }
 };
