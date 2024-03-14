@@ -1,0 +1,1 @@
+This repository covers ES6 classes indluding inheritance and metaprogramming(Symbols).
