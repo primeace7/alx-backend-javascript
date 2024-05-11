@@ -6,7 +6,7 @@ function countStudents(path) {
     let dataLines = data.split('\n');
     dataLines = dataLines.slice(1);
 
-    console.log(`Number of Students: ${dataLines.length}`);
+    process.stdout.write(`Number of Students: ${dataLines.length}`);
     const groups = {};
     dataLines.forEach((elem) => {
       const splitLine = elem.split(',');
@@ -18,7 +18,7 @@ function countStudents(path) {
     });
 
     for (const subject of Object.keys(groups)) {
-      console.log(`Number of students in ${subject}: ${groups[subject].length}`,
+      process.stdout.write(`Number of students in ${subject}: ${groups[subject].length}`,
         `List: ${groups[subject].join(', ')}`);
     }
   } catch (err) {
