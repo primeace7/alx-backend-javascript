@@ -1,6 +1,6 @@
 const fs = require('node:fs/promises');
 
-const readDatabase = function (path) {
+function readDatabase(path) {
   const item = fs.readFile(path, { encoding: 'utf8' });
   return item.then((data) => {
     let dataLines = data.split('\n');
@@ -12,12 +12,11 @@ const readDatabase = function (path) {
       const subject = splitLine[splitLine.length - 1];
       const firstName = splitLine[0];
 
-      if (!Object.hasOwn(groups, subject)) { groups[subject] = [firstName]; } else { groups[subject].push(firstName); }
+      if (!Object.hasOwn(groups, subject)) groups[subject] = [firstName];
+      else groups[subject].push(firstName);
     });
     return groups;
-  }).catch((err) => {
-    return err;
-  });
-};
+  }).catch((err) => err);
+}
 
 module.exports = readDatabase;

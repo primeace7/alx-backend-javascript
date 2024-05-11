@@ -2,7 +2,7 @@ const { createServer } = require('node:http');
 const fs = require('node:fs');
 
 // Fetch the contents of a csv file whose path is <path> and format it
-function countStudents (path) {
+function countStudents(path) {
   try {
     const data = fs.readFileSync(path, 'utf8');
     let dataLines = data.split('\n');
@@ -15,7 +15,8 @@ function countStudents (path) {
       const subject = splitLine[splitLine.length - 1];
       const firstName = splitLine[0];
 
-      if (!Object.hasOwn(groups, subject)) { groups[subject] = [firstName]; } else { groups[subject].push(firstName); }
+      if (!Object.hasOwn(groups, subject)) groups[subject] = [firstName];
+      else groups[subject].push(firstName);
     });
 
     for (const subject of Object.keys(groups)) { result += `Number of students in ${subject}: ${groups[subject].length} List: ${groups[subject].join(', ')}\n`; }
@@ -26,8 +27,8 @@ function countStudents (path) {
   }
 }
 
-let dbPath;
-if (process.argv.length > 2) { dbPath = process.argv[2]; } else { dbPath = './database.csv'; }
+let dbPath = process.argv[2];
+if (dbPath === undefined) dbPath = './database.csv';
 
 const result = countStudents(dbPath);
 
@@ -36,7 +37,7 @@ const app = createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
 
-  if (req.url === '/') { res.end('Hello Holberton School!'); } else if (req.url === '/students') { res.end('This is the list of our students\n' + result); }
+  if (req.url === '/') { res.end('Hello Holberton School!'); } else if (req.url === '/students') { res.end(`This is the list of our students\n${result}`); }
 });
 
 app.listen(1245, '0.0.0.0');

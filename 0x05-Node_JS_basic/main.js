@@ -1,10 +1,3 @@
-const countStudents = require('./backup');
+const displayMessage = require('./0-console');
 
-countStudents('database.csv')
-  .then(() => {
-    console.log('Done!');
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-console.log('After!');
+displayMessage("Hello NodeJS!");

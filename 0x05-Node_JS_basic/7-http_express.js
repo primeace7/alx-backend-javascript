@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const app = express();
 
 // Fetch the contents of a csv file whose path is <path> and format it
-function countStudents (path) {
+function countStudents(path) {
   try {
     const data = fs.readFileSync(path, 'utf8');
     let dataLines = data.split('\n');
@@ -17,10 +17,11 @@ function countStudents (path) {
       const subject = splitLine[splitLine.length - 1];
       const firstName = splitLine[0];
 
-      if (!Object.hasOwn(groups, subject)) { groups[subject] = [firstName]; } else { groups[subject].push(firstName); }
+      if (!Object.hasOwn(groups, subject)) groups[subject] = [firstName];
+      else groups[subject].push(firstName);
     });
 
-    for (const subject of Object.keys(groups)) { result += `Number of students in ${subject}: ${groups[subject].length} List: ${groups[subject].join(', ')}\n`; }
+    for (const subject of Object.keys(groups)) result += `Number of students in ${subject}: ${groups[subject].length} List: ${groups[subject].join(', ')}\n`;
     result = result.trimRight();
     return result;
   } catch (err) {
@@ -28,11 +29,11 @@ function countStudents (path) {
   }
 }
 
-let dbPath;
-if (process.argv.length > 2) { dbPath = process.argv[2]; } else { dbPath = './database.csv'; }
+let dbPath = process.argv[2];
+if (dbPath === undefined) dbPath = './database.csv';
 
 let result = countStudents(dbPath);
-result = 'This is the list of our students\n' + result;
+result = `This is the list of our students\n${result}`;
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello Holberton School!');

@@ -1,14 +1,14 @@
 const readDatabase = require('../utils');
 
-let dbPath;
-if (process.argv.length > 2) { dbPath = process.argv[2]; } else { dbPath = '../database.csv'; }
+let dbPath = process.argv[2];
+if (dbPath === undefined) dbPath = '../database.csv';
 
 class StudentsController {
-  static getAllStudents (request, response) {
+  static getAllStudents(request, response) {
     let result = '';
     readDatabase(dbPath).then((data) => {
       result += 'This is the list of our students';
-      const fields = Object.keys(data).map(elem => elem.toUpperCase());
+      const fields = Object.keys(data).map((elem) => elem.toUpperCase());
       fields.sort();
       fields.forEach((elem) => {
         Object.keys(data).forEach((elem2) => {
@@ -21,12 +21,12 @@ class StudentsController {
     });
   }
 
-  static getAllStudentsByMajor (request, response) {
-    let major = request.params.major;
+  static getAllStudentsByMajor(request, response) {
+    let { major } = request.params;
     if (['CS', 'SWE'].includes(major)) {
       major = major.toUpperCase();
       readDatabase(dbPath).then((data) => {
-        Object.keys(data).forEach(elem => {
+        Object.keys(data).forEach((elem) => {
           if (elem.toUpperCase() === major) { response.status(200).send(`List: ${data[elem].join(', ')}`); }
         });
       }).catch(() => {

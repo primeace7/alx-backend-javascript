@@ -1,6 +1,6 @@
 const fs = require('node:fs/promises');
 
-const countStudents = async function (path) {
+async function countStudents(path) {
   try {
     const data = await fs.readFile(path, { encoding: 'utf8' });
     let dataLines = data.split('\n');
@@ -13,7 +13,8 @@ const countStudents = async function (path) {
       const subject = splitLine[splitLine.length - 1];
       const firstName = splitLine[0];
 
-      if (!Object.hasOwn(groups, subject)) { groups[subject] = [firstName]; } else { groups[subject].push(firstName); }
+      if (!Object.hasOwn(groups, subject)) groups[subject] = [firstName];
+      else groups[subject].push(firstName);
     });
 
     for (const subject of Object.keys(groups)) {
@@ -22,6 +23,6 @@ const countStudents = async function (path) {
   } catch (err) {
     throw Error('Cannot load the database');
   }
-};
+}
 
 module.exports = countStudents;
